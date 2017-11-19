@@ -47,14 +47,14 @@ def main():
                   'http://www.team-cymru.org/Services/Bogons/fullbogons-ipv4.txt')
     
                                        # list of bogons who's routes are 
-				       # currently pointing to the blackhole
+                                       # currently pointing to the blackhole
     currentbogons = set()
                                        # main loop
     while True:
         latestbogons = set()
         sizeoflb = 0
         for blocklist in blocklists:
-	    previoussizeoflb = sizeoflb
+            previoussizeoflb = sizeoflb
             latestbogons = latestbogons | fetch(blocklist)
             sizeoflb = len(latestbogons)
             syslog.syslog('{0} added {1} new prefixes from {2}'.format(syslogprefix, sizeoflb - previoussizeoflb, blocklist))
